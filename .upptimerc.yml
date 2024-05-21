@@ -3,6 +3,8 @@ owner: lyuboslav2406
 repo: status-xrm
 
 sites:
+  - name: XRM
+    url: https://web.dev.cmxapp.cloud/
   - name: Google
     url: https://www.google.com
   - name: Wikipedia
@@ -24,13 +26,13 @@ status-website:
   baseUrl: /status-xrm
   logoUrl: https://raw.githubusercontent.com/lyuboslav2406/status-xrm/master/logo-milestone.svg
   name: XRM Status Page
-  introTitle: "**Upptime** is the open-source uptime monitor and status page, powered entirely by GitHub."
-  introMessage: This is a sample status page which uses **real-time** data from our [GitHub repository](https://github.com/upptime/upptime). No server required — just GitHub Actions, Issues, and Pages. [**Get your own for free**](https://github.com/upptime/upptime)
+  introTitle: "Welcome to the **XRM** Software Status Page"
+  introMessage: Get **real-time** updates on system performance, maintenance, and any issues affecting our services. Stay connected with the latest information on your **XRM** software.
   navbar:
     - title: Status
       href: /
-    - title: GitHub
-      href: https://github.com/$OWNER/$REPO
+    - title: XRM APP
+      href: https://web.dev.cmxapp.cloud/
 
 # Upptime also supports notifications, assigning issues, and more
 # See https://upptime.js.org/docs/configuration

@@ -16,7 +16,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16' # You can use Node.js 20 here
+          node-version: '20'
 
       - name: Get Bearer Token
         id: get_token

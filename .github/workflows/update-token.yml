@@ -11,7 +11,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3  # Update to v3 which uses Node.js 20
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16' # You can use Node.js 20 here
 
       - name: Get Bearer Token
         id: get_token
@@ -27,16 +32,15 @@ jobs:
               "ClientId" : "'"${{ secrets.COGNITO_CLIENT_ID }}"'"
             }')
           token=$(echo $response | jq -r '.AuthenticationResult.IdToken')
-          echo "TOKEN=$token" >> $GITHUB_ENV
+          echo "BEARER_TOKEN=$token" >> $GITHUB_ENV
 
       - name: Update GitHub Secret
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          TOKEN: ${{ env.TOKEN }}
         run: |
           gh api \
             -H "Accept: application/vnd.github.v3+json" \
-            /repos/${{ github.repository }}/actions/secrets/Bearer_Token \
+            /repos/$GITHUB_REPOSITORY/actions/secrets/Bearer_Token \
             -X PUT \
-            -F "encrypted_value=$(echo -n $TOKEN | gh secret encrypt --repo ${{ github.repository }})" \
-            -F "key_id=$(gh api /repos/${{ github.repository }}/actions/secrets/public-key | jq -r '.key_id')"
+            -F "encrypted_value=$(echo -n $BEARER_TOKEN | gh secret encrypt --repo $GITHUB_REPOSITORY)" \
+            -F "key_id=$(gh api /repos/$GITHUB_REPOSITORY/actions/secrets/public-key | jq -r '.key_id')"
+        env:
+          BEARER_TOKEN: ${{ env.BEARER_TOKEN }}

@@ -1,0 +1,45 @@
+name: Update Bearer Token
+
+on:
+  schedule:
+    - cron: '0 * * * *' # Runs every hour
+  workflow_dispatch:
+
+jobs:
+  update-token:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Get Bearer Token
+        id: get_token
+        run: |
+          response=$(curl -s -X POST https://cognito-idp.eu-west-1.amazonaws.com/ \
+            -H "Content-Type: application/json" \
+            -d '{
+              "AuthParameters" : {
+                "USERNAME" : "'"${{ secrets.COGNITO_USERNAME }}"'",
+                "PASSWORD" : "'"${{ secrets.COGNITO_PASSWORD }}"'"
+              },
+              "AuthFlow" : "USER_PASSWORD_AUTH",
+              "ClientId" : "'"${{ secrets.COGNITO_CLIENT_ID }}"'"
+            }')
+          token=$(echo $response | jq -r '.AuthenticationResult.IdToken')
+          echo "::set-output name=token::$token"
+
+      - name: Update GitHub Secret
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+
+      - name: Set GitHub Secret
+        run: |
+          gh api \
+            -H "Accept: application/vnd.github.v3+json" \
+            /repos/$GITHUB_REPOSITORY/actions/secrets/Bearer_Token \
+            -X PUT \
+            -F "encrypted_value=$(echo -n ${{ steps.get_token.outputs.token }} | gh secret encrypt --repo $GITHUB_REPOSITORY)" \
+            -F "key_id=$(gh api /repos/$GITHUB_REPOSITORY/actions/secrets/public-key | jq -r '.key_id')"
+            

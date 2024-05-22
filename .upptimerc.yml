@@ -25,6 +25,7 @@ status-website:
   cname: status.dev.cmxapp.cloud
   # baseUrl: /status-xrm
   logoUrl: https://raw.githubusercontent.com/lyuboslav2406/status-xrm/master/logo-milestone.svg
+  faviconSvg: https://raw.githubusercontent.com/lyuboslav2406/status-xrm/master/favicon.svg
   name: XRM Status Page
   introTitle: "Welcome to the **XRM** Software Status Page"
   introMessage: Get **real-time** updates on system performance, maintenance, and any issues affecting our services. Stay connected with the latest information on your **XRM** software.

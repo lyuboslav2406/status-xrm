@@ -34,10 +34,13 @@ jobs:
           token=$(echo $response | jq -r '.AuthenticationResult.IdToken')
           echo "BEARER_TOKEN=$token" >> $GITHUB_ENV
 
-      - name: Encrypt and upload token
+      - name: Set GitHub Secret
         run: |
-          echo "${{ env.BEARER_TOKEN }}" > token.txt
-          gpg --symmetric --cipher-algo AES256 --batch --passphrase "${{ secrets.GPG_PASSPHRASE }}" token.txt
-          base64 token.txt.gpg | gh secret set Bearer_Token --body - --token ${{ secrets.GH_PAT }}
+          gh api \
+            -H "Accept: application/vnd.github.v3+json" \
+            -X PUT \
+            /repos/$GITHUB_REPOSITORY/actions/secrets/Bearer_Token \
+            -F "encrypted_value=$(echo -n ${{ env.BEARER_TOKEN }} | base64)" \
+            -F "key_id=$(gh api /repos/$GITHUB_REPOSITORY/actions/secrets/public-key | jq -r '.key_id')"
         env:
-          BEARER_TOKEN: ${{ env.BEARER_TOKEN }}
+          BEARER_TOKEN: ${{ secrets.BEARER_TOKEN }}

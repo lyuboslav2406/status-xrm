@@ -40,8 +40,8 @@ jobs:
             -H "Accept: application/vnd.github.v3+json" \
             -X PUT \
             /repos/$GITHUB_REPOSITORY/actions/secrets/Bearer_Token \
-            -F "encrypted_value=$(echo -n ${{ env.BEARER_TOKEN }} | base64)" \
-            -F "key_id=$(gh api /repos/$GITHUB_REPOSITORY/actions/secrets/public-key | jq -r '.key_id')" \
-            --token ${{ secrets.GH_PAT }}
+            -f encrypted_value=$(echo -n ${{ env.BEARER_TOKEN }} | base64) \
+            -f key_id=$(gh api /repos/$GITHUB_REPOSITORY/actions/secrets/public-key | jq -r '.key_id')
         env:
-          BEARER_TOKEN: ${{ secrets.BEARER_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          BEARER_TOKEN: ${{ env.BEARER_TOKEN }}

@@ -31,17 +31,35 @@ jobs:
               "AuthFlow" : "USER_PASSWORD_AUTH",
               "ClientId" : "'"${{ secrets.COGNITO_CLIENT_ID }}"'"
             }')
+          echo "Response: $response"
           token=$(echo $response | jq -r '.AuthenticationResult.IdToken')
+          if [ -z "$token" ]; then
+            echo "Failed to obtain bearer token"
+            exit 1
+          fi
           echo "BEARER_TOKEN=$token" >> $GITHUB_ENV
 
-      - name: Set GitHub Secret
+      - name: Get Repository Public Key
+        id: get_public_key
         run: |
+          public_key=$(gh api /repos/$GITHUB_REPOSITORY/actions/secrets/public-key | jq -r '.key')
+          key_id=$(gh api /repos/$GITHUB_REPOSITORY/actions/secrets/public-key | jq -r '.key_id')
+          echo "PUBLIC_KEY=$public_key" >> $GITHUB_ENV
+          echo "KEY_ID=$key_id" >> $GITHUB_ENV
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+
+      - name: Encrypt and Set GitHub Secret
+        run: |
+          encrypted_value=$(echo -n ${{ env.BEARER_TOKEN }} | openssl rsautl -encrypt -pubin -inkey <(echo "$PUBLIC_KEY" | base64 -d) | base64)
           gh api \
             -H "Accept: application/vnd.github.v3+json" \
             -X PUT \
             /repos/$GITHUB_REPOSITORY/actions/secrets/Bearer_Token \
-            -f encrypted_value=$(echo -n ${{ env.BEARER_TOKEN }} | base64) \
-            -f key_id=$(gh api /repos/$GITHUB_REPOSITORY/actions/secrets/public-key | jq -r '.key_id')
+            -f encrypted_value="$encrypted_value" \
+            -f key_id="${{ env.KEY_ID }}"
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
+          PUBLIC_KEY: ${{ env.PUBLIC_KEY }}
           BEARER_TOKEN: ${{ env.BEARER_TOKEN }}
+          KEY_ID: ${{ env.KEY_ID }}

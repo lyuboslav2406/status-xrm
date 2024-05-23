@@ -41,16 +41,28 @@ jobs:
           echo "BEARER_TOKEN=$token" >> $GITHUB_ENV
           echo "::add-mask::$token" # Mask the token in logs for security
 
+      - name: Get Public Key
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          echo "Fetching the latest public key..."
+          PUBLIC_KEY=$(curl -X GET \
+            -H "Authorization: token $GH_PAT" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/lyuboslav2406/status-xrm/actions/secrets/public-key | jq -r '.key')
+
       - name: Update Repository Secret
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
           BEARER_TOKEN: ${{ secrets.BEARER_TOKEN }}
+          PUBLIC_KEY: $PUBLIC_KEY
         run: |
           echo "Updating repository secret..."
           curl -X PUT \
             -H "Authorization: token $GH_PAT" \
             -H "Accept: application/vnd.github.v3+json" \
             https://api.github.com/repos/lyuboslav2406/status-xrm/actions/secrets/BEARER_TOKEN \
-            -d '{"encrypted_value":"'"$(echo -n $BEARER_TOKEN | base64)"'","key_id":""}'
+            -d '{"encrypted_value":"'"$(echo -n $BEARER_TOKEN | openssl rsautl -encrypt -pubin -inkey <(echo "$PUBLIC_KEY") | base64 -w 0)"'","key_id":""}'
+
 
 

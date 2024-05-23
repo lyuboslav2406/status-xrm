@@ -41,18 +41,16 @@
     "icon": "https://www.milestonesys.com/favicon.ico",
     "slug": "ams-get-permissions",
     "status": "up",
-    "uptime": "1.63%",
-    "uptimeDay": "1.63%",
-    "uptimeWeek": "1.63%",
-    "uptimeMonth": "1.63%",
-    "uptimeYear": "1.63%",
+    "uptime": "100.00%",
+    "uptimeDay": "100.00%",
+    "uptimeWeek": "100.00%",
+    "uptimeMonth": "100.00%",
+    "uptimeYear": "100.00%",
     "time": 402,
     "timeDay": 402,
     "timeWeek": 402,
     "timeMonth": 402,
     "timeYear": 402,
-    "dailyMinutesDown": {
-      "2024-05-23": 4
-    }
+    "dailyMinutesDown": {}
   }
 ]

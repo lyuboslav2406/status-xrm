@@ -42,10 +42,13 @@ jobs:
           echo "::add-mask::$token" # Mask the token in logs for security
 
       - name: Update Repository Secret
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+          BEARER_TOKEN: ${{ secrets.BEARER_TOKEN }}
         run: |
-          echo $BEARER_TOKEN > token.txt
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions"
-          git add token.txt
-          git commit -m "Update BEARER_TOKEN"
-          git push
+          echo "Updating repository secret..."
+          curl -X PUT \
+            -H "Authorization: token $GH_PAT" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/lyuboslav2406/status-xrm/actions/secrets/BEARER_TOKEN \
+            -d '{"encrypted_value":"'"$(echo -n $BEARER_TOKEN | base64)"'","key_id":null}'

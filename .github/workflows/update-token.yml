@@ -22,7 +22,8 @@ jobs:
         id: get_token
         run: |
           response=$(curl -s -X POST https://cognito-idp.eu-west-1.amazonaws.com/ \
-            -H "Content-Type: application/json" \
+            -H "Content-Type: application/x-amz-json-1.1" \
+            -H "X-Amz-Target: AWSCognitoIdentityProviderService.InitiateAuth" \
             -d '{
               "AuthParameters" : {
                 "USERNAME" : "'"${{ secrets.COGNITO_USERNAME }}"'",

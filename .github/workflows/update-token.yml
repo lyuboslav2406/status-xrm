@@ -51,4 +51,5 @@ jobs:
             -H "Authorization: token $GH_PAT" \
             -H "Accept: application/vnd.github.v3+json" \
             https://api.github.com/repos/lyuboslav2406/status-xrm/actions/secrets/BEARER_TOKEN \
-            -d '{"encrypted_value":"'"$(echo -n $BEARER_TOKEN | base64)"'","key_id":null}'
+            -d '{"encrypted_value":"'"$(echo -n $BEARER_TOKEN | base64)"'"}'
+

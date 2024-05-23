@@ -24,6 +24,8 @@ sites:
     method: POST
     url: https://sas.dev.cmxapp.cloud/auth/awsidentity/
     icon: https://www.milestonesys.com/favicon.ico
+    headers:
+    - "Content-Type: application/json"
     body: '{ "username": "test",  "password": "test"}'
     expectedStatusCodes:
       - 401

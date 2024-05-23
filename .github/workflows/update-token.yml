@@ -42,35 +42,30 @@ jobs:
           echo "::add-mask::$token" # Mask the token in logs for security
 
       - name: Get Public Key
-        env:
-          GH_PAT: ${{ secrets.GH_PAT }}
+        id: get_public_key
         run: |
           echo "Fetching the latest public key..."
           RESPONSE=$(curl -s -L \
             -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer $GH_PAT" \
+            -H "Authorization: Bearer ${{ secrets.GH_PAT }}" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
             https://api.github.com/repos/lyuboslav2406/status-xrm/actions/secrets/public-key)
-          KEY_ID=$(echo $RESPONSE | jq -r '.key_id')
-          PUBLIC_KEY=$(echo $RESPONSE | jq -r '.key')
+          echo "$RESPONSE" > public_key.json
 
       - name: Encrypt Secret Value
-        env:
-          PUBLIC_KEY: $PUBLIC_KEY
+        id: encrypt_secret
         run: |
           echo "Encrypting secret value..."
-          ENCRYPTED_VALUE=$(echo -n $BEARER_TOKEN | openssl rsautl -encrypt -pubin -inkey <(echo "$PUBLIC_KEY") | base64 -w 0)
+          PUBLIC_KEY=$(jq -r '.key' public_key.json)
+          ENCRYPTED_VALUE=$(echo -n "${{ secrets.BEARER_TOKEN }}" | openssl pkeyutl -encrypt -pubin -inkey <(echo "$PUBLIC_KEY") | base64 -w 0)
+          echo "ENCRYPTED_VALUE=$ENCRYPTED_VALUE" >> $GITHUB_ENV
 
       - name: Update Repository Secret
-        env:
-          GH_PAT: ${{ secrets.GH_PAT }}
-          KEY_ID: $KEY_ID
-          ENCRYPTED_VALUE: $ENCRYPTED_VALUE
         run: |
           echo "Updating repository secret..."
           curl -L -X PUT \
             -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer $GH_PAT" \
+            -H "Authorization: Bearer ${{ secrets.GH_PAT }}" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
             https://api.github.com/repos/lyuboslav2406/status-xrm/actions/secrets/BEARER_TOKEN \
-            -d "{\"encrypted_value\":\"$ENCRYPTED_VALUE\",\"key_id\":\"$KEY_ID\"}"
+            -d "{\"encrypted_value\":\"${{ env.ENCRYPTED_VALUE }}\",\"key_id\":\"${{ steps.get_public_key.outputs.key_id }}\"}"

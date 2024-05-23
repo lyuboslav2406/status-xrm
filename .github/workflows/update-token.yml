@@ -39,7 +39,7 @@ jobs:
             exit 1
           fi
           echo "::set-env name=BEARER_TOKEN::$token" # Set environment variable
-          # echo "::add-mask::$token" Mask the token in logs for security
+          echo "::add-mask::$token" # Mask the token in logs for security
           echo "::set-output name=token::$token" # Set output variable for later steps
 
       - name: Update Repository Secret

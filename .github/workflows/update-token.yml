@@ -18,6 +18,9 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Install sodium-native
+        run: npm install sodium-native@4.0.4
+
       - name: Get Bearer Token
         id: get_token
         run: |
@@ -46,26 +49,4 @@ jobs:
         run: |
           echo "Fetching the latest public key..."
           RESPONSE=$(curl -s -L \
-            -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${{ secrets.GH_PAT }}" \
-            -H "X-GitHub-Api-Version: 2022-11-28" \
-            https://api.github.com/repos/lyuboslav2406/status-xrm/actions/secrets/public-key)
-          echo "$RESPONSE" > public_key.json
-
-      - name: Encrypt Secret Value
-        id: encrypt_secret
-        run: |
-          echo "Encrypting secret value..."
-          PUBLIC_KEY=$(jq -r '.key' public_key.json)
-          ENCRYPTED_VALUE=$(node -e "const sodium = require('sodium-native'); const publicKey = Buffer.from('${PUBLIC_KEY}', 'base64'); const message = Buffer.from('${{ env.BEARER_TOKEN }}'); const ciphertext = Buffer.alloc(sodium.crypto_box_SEALBYTES + message.length); sodium.crypto_box_seal(ciphertext, message, publicKey); console.log(ciphertext.toString('base64'));")
-          echo "ENCRYPTED_VALUE=$ENCRYPTED_VALUE" >> $GITHUB_ENV
-
-      - name: Update Repository Secret
-        run: |
-          echo "Updating repository secret..."
-          curl -L -X PUT \
-            -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${{ secrets.GH_PAT }}" \
-            -H "X-GitHub-Api-Version: 2022-11-28" \
-            https://api.github.com/repos/lyuboslav2406/status-xrm/actions/secrets/BEARER_TOKEN \
-            -d "{\"encrypted_value\":\"${{ env.ENCRYPTED_VALUE }}\",\"key_id\":\"${{ steps.get_public_key.outputs.key_id }}\"}"
+            -H "Accept: application/vnd.github+json

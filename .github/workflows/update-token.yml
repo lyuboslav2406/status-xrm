@@ -38,7 +38,7 @@ jobs:
             echo "Failed to obtain bearer token"
             exit 1
           fi
-          echo "::set-env name=BEARER_TOKEN::$token" # Set environment variable
+          echo "BEARER_TOKEN=$token" >> $GITHUB_ENV
           echo "::add-mask::$token" # Mask the token in logs for security
 
       - name: Update Repository Secret

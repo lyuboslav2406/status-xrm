@@ -15,6 +15,11 @@ sites:
     icon: https://www.milestonesys.com/favicon.ico
     headers:
     - "Authorization: Bearer $BEARER_TOKEN"
+  - name: TMS Get Tenants
+    url: https://tms.dev.cmxapp.cloud/tenants/$AMS_TENANT_ID
+    icon: https://www.milestonesys.com/favicon.ico
+    headers:
+    - "Authorization: Bearer $BEARER_TOKEN"
 
 status-website:
   # Add your custom domain name, or remove the `cname` line if you don't have a domain

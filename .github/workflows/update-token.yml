@@ -46,21 +46,26 @@ jobs:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           echo "Fetching the latest public key..."
-          PUBLIC_KEY=$(curl -s -X GET \
-            -H "Authorization: token $GH_PAT" \
-            -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/repos/lyuboslav2406/status-xrm/actions/secrets/public-key | jq -r '.key')
+          RESPONSE=$(curl -s -L \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GH_PAT" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/lyuboslav2406/status-xrm/actions/secrets/public-key)
+          KEY_ID=$(echo $RESPONSE | jq -r '.key_id')
+          PUBLIC_KEY=$(echo $RESPONSE | jq -r '.key')
 
       - name: Update Repository Secret
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
           BEARER_TOKEN: ${{ secrets.BEARER_TOKEN }}
+          KEY_ID: $KEY_ID
           PUBLIC_KEY: $PUBLIC_KEY
         run: |
           echo "Updating repository secret..."
           ENCRYPTED_TOKEN=$(echo -n $BEARER_TOKEN | openssl pkeyutl -encrypt -pubin -inkey <(echo "$PUBLIC_KEY") | base64 -w 0)
-          curl -X PUT \
-            -H "Authorization: token $GH_PAT" \
-            -H "Accept: application/vnd.github.v3+json" \
+          curl -L -X PUT \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GH_PAT" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
             https://api.github.com/repos/lyuboslav2406/status-xrm/actions/secrets/BEARER_TOKEN \
-            -d "{\"encrypted_value\":\"$ENCRYPTED_TOKEN\",\"key_id\":\"\"}"
+            -d "{\"encrypted_value\":\"$ENCRYPTED_TOKEN\",\"key_id\":\"$KEY_ID\"}"

@@ -10,11 +10,11 @@
     "uptimeWeek": "100.00%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
-    "time": 463,
-    "timeDay": 457,
-    "timeWeek": 463,
-    "timeMonth": 463,
-    "timeYear": 463,
+    "time": 459,
+    "timeDay": 452,
+    "timeWeek": 459,
+    "timeMonth": 459,
+    "timeYear": 459,
     "dailyMinutesDown": {}
   },
   {
@@ -28,11 +28,11 @@
     "uptimeWeek": "100.00%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
-    "time": 132,
-    "timeDay": 142,
-    "timeWeek": 132,
-    "timeMonth": 132,
-    "timeYear": 132,
+    "time": 129,
+    "timeDay": 134,
+    "timeWeek": 129,
+    "timeMonth": 129,
+    "timeYear": 129,
     "dailyMinutesDown": {}
   },
   {
@@ -46,11 +46,11 @@
     "uptimeWeek": "100.00%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
-    "time": 226,
-    "timeDay": 166,
-    "timeWeek": 226,
-    "timeMonth": 226,
-    "timeYear": 226,
+    "time": 225,
+    "timeDay": 170,
+    "timeWeek": 225,
+    "timeMonth": 225,
+    "timeYear": 225,
     "dailyMinutesDown": {}
   },
   {
@@ -64,11 +64,11 @@
     "uptimeWeek": "100.00%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
-    "time": 288,
-    "timeDay": 260,
-    "timeWeek": 288,
-    "timeMonth": 288,
-    "timeYear": 288,
+    "time": 296,
+    "timeDay": 276,
+    "timeWeek": 296,
+    "timeMonth": 296,
+    "timeYear": 296,
     "dailyMinutesDown": {}
   },
   {
@@ -113,18 +113,18 @@
     "icon": "https://icons.duckduckgo.com/ip3/sms.dev.cmxapp.cloud.ico",
     "slug": "api-sms-get-sites",
     "status": "down",
-    "uptime": "9.36%",
-    "uptimeDay": "9.36%",
-    "uptimeWeek": "9.36%",
-    "uptimeMonth": "9.36%",
-    "uptimeYear": "9.36%",
-    "time": 395,
-    "timeDay": 395,
-    "timeWeek": 395,
-    "timeMonth": 395,
-    "timeYear": 395,
+    "uptime": "8.66%",
+    "uptimeDay": "8.66%",
+    "uptimeWeek": "8.66%",
+    "uptimeMonth": "8.66%",
+    "uptimeYear": "8.66%",
+    "time": 385,
+    "timeDay": 385,
+    "timeWeek": 385,
+    "timeMonth": 385,
+    "timeYear": 385,
     "dailyMinutesDown": {
-      "2024-05-23": 92
+      "2024-05-23": 100
     }
   }
 ]

@@ -19,6 +19,11 @@ sites:
     check: "tcp-ping"
     ipv6: true
 
+  - name: API SMS-> Get Sites
+    url: https://sms.dev.cmxapp.cloud/sites
+    headers:
+      - "Authorization: Bearer ${{ secrets.BEARER_TOKEN }}")"
+
 status-website:
   # Add your custom domain name, or remove the `cname` line if you don't have a domain
   # Uncomment the `baseUrl` line if you don't have a custom domain and add your repo name there

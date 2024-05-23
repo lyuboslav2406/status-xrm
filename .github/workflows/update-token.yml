@@ -38,14 +38,12 @@ jobs:
             echo "Failed to obtain bearer token"
             exit 1
           fi
-          echo "BEARER_TOKEN=$token" >> $GITHUB_ENV
+          echo "::set-env name=BEARER_TOKEN::$token" # Set environment variable
+          # echo "::add-mask::$token" Mask the token in logs for security
+          echo "::set-output name=token::$token" # Set output variable for later steps
 
-      - name: Set GitHub Secret
-        run: |
-          # Remove leading and trailing whitespace and quotes from the token
-          sanitized_token=$(echo "${BEARER_TOKEN}" | sed 's/^"\(.*\)"$/\1/')
-          gh secret set BEARER_TOKEN --body $sanitized_token
-        env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
-          BEARER_TOKEN: ${{ secrets.BEARER_TOKEN }}
-
+      - name: Update Repository Secret
+        uses: srt32/update-repo-secret@v1
+        with:
+          secret_name: BEARER_TOKEN
+          new_secret_value: ${{ steps.get_token.outputs.token }}

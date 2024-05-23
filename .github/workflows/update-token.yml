@@ -63,7 +63,7 @@ jobs:
         id: encrypt_secret
         run: |
           echo "Encrypting secret value..."
-          ENCRYPTED_VALUE=$(echo -n "${{ secrets.BEARER_TOKEN }}" | $(npm root -g)/sodium-native seal "$(echo "$PUBLIC_KEY" | base64 -d)")
+          ENCRYPTED_VALUE=$(echo -n "${{ secrets.BEARER_TOKEN }}" | $(npm root -g)/sodium-native/cli/sodium-native.js seal "$(echo "$PUBLIC_KEY" | base64 -d)")
           echo "ENCRYPTED_VALUE=$ENCRYPTED_VALUE" >> $GITHUB_ENV
 
       - name: Update Repository Secret

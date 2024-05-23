@@ -40,10 +40,12 @@ jobs:
           fi
           echo "::set-env name=BEARER_TOKEN::$token" # Set environment variable
           echo "::add-mask::$token" # Mask the token in logs for security
-          echo "::set-output name=token::$token" # Set output variable for later steps
 
       - name: Update Repository Secret
-        uses: srt32/update-repo-secret@v1
-        with:
-          secret_name: BEARER_TOKEN
-          new_secret_value: ${{ steps.get_token.outputs.token }}
+        run: |
+          echo $BEARER_TOKEN > token.txt
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git add token.txt
+          git commit -m "Update BEARER_TOKEN"
+          git push

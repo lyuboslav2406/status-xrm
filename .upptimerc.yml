@@ -20,6 +20,13 @@ sites:
     icon: https://www.milestonesys.com/favicon.ico
     headers:
     - "Authorization: Bearer $BEARER_TOKEN"
+  - name: SAS Login Unauthorized
+    method: POST
+    url: https://sas.dev.cmxapp.cloud/auth/awsidentity/
+    icon: https://www.milestonesys.com/favicon.ico
+    body: '{ "username": "test",  "password": "test"}'
+    expectedStatusCodes:
+      - 401
 
 status-website:
   # Add your custom domain name, or remove the `cname` line if you don't have a domain

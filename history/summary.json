@@ -23,19 +23,17 @@
     "icon": "https://www.milestonesys.com/favicon.ico",
     "slug": "sms-get-sites",
     "status": "up",
-    "uptime": "97.89%",
-    "uptimeDay": "97.89%",
-    "uptimeWeek": "97.89%",
-    "uptimeMonth": "97.89%",
-    "uptimeYear": "97.89%",
+    "uptime": "100.00%",
+    "uptimeDay": "100.00%",
+    "uptimeWeek": "100.00%",
+    "uptimeMonth": "100.00%",
+    "uptimeYear": "100.00%",
     "time": 401,
     "timeDay": 401,
     "timeWeek": 401,
     "timeMonth": 401,
     "timeYear": 401,
-    "dailyMinutesDown": {
-      "2024-05-23": 3
-    }
+    "dailyMinutesDown": {}
   },
   {
     "name": "AMS Get Permissions",
@@ -43,19 +41,17 @@
     "icon": "https://www.milestonesys.com/favicon.ico",
     "slug": "ams-get-permissions",
     "status": "up",
-    "uptime": "97.89%",
-    "uptimeDay": "97.89%",
-    "uptimeWeek": "97.89%",
-    "uptimeMonth": "97.89%",
-    "uptimeYear": "97.89%",
+    "uptime": "100.00%",
+    "uptimeDay": "100.00%",
+    "uptimeWeek": "100.00%",
+    "uptimeMonth": "100.00%",
+    "uptimeYear": "100.00%",
     "time": 392,
     "timeDay": 392,
     "timeWeek": 392,
     "timeMonth": 392,
     "timeYear": 392,
-    "dailyMinutesDown": {
-      "2024-05-23": 3
-    }
+    "dailyMinutesDown": {}
   },
   {
     "name": "TMS Get Tenants",
@@ -63,19 +59,17 @@
     "icon": "https://www.milestonesys.com/favicon.ico",
     "slug": "tms-get-tenants",
     "status": "up",
-    "uptime": "97.56%",
-    "uptimeDay": "97.56%",
-    "uptimeWeek": "97.56%",
-    "uptimeMonth": "97.56%",
-    "uptimeYear": "97.56%",
+    "uptime": "100.00%",
+    "uptimeDay": "100.00%",
+    "uptimeWeek": "100.00%",
+    "uptimeMonth": "100.00%",
+    "uptimeYear": "100.00%",
     "time": 869,
     "timeDay": 869,
     "timeWeek": 869,
     "timeMonth": 869,
     "timeYear": 869,
-    "dailyMinutesDown": {
-      "2024-05-23": 3
-    }
+    "dailyMinutesDown": {}
   },
   {
     "name": "SAS Login Unauthorized",
@@ -101,11 +95,11 @@
     "icon": "https://www.milestonesys.com/favicon.ico",
     "slug": "sc-get-sites",
     "status": "down",
-    "uptime": "11.28%",
-    "uptimeDay": "11.28%",
-    "uptimeWeek": "11.28%",
-    "uptimeMonth": "11.28%",
-    "uptimeYear": "11.28%",
+    "uptime": "0.56%",
+    "uptimeDay": "0.56%",
+    "uptimeWeek": "0.56%",
+    "uptimeMonth": "0.56%",
+    "uptimeYear": "0.56%",
     "time": 460,
     "timeDay": 460,
     "timeWeek": 460,

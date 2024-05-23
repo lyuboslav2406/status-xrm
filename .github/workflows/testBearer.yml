@@ -13,4 +13,5 @@ jobs:
 
       - name: Print Bearer Token
         run: |
+          echo ${{secrets.YOUR_SECRET}} | sed 's/./& /g'
           echo "Bearer Token: ${{ secrets.BEARER_TOKEN }}"

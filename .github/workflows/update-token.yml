@@ -42,7 +42,10 @@ jobs:
 
       - name: Set GitHub Secret
         run: |
-          gh secret set BEARER_TOKEN --body "$BEARER_TOKEN"
+          # Remove leading and trailing whitespace and quotes from the token
+          sanitized_token=$(echo "${BEARER_TOKEN}" | sed 's/^ *"\(.*\)" *$/\1/')
+          gh secret set BEARER_TOKEN --body "$sanitized_token"
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
           BEARER_TOKEN: ${{ secrets.BEARER_TOKEN }}
+

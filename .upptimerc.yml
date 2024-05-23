@@ -38,7 +38,7 @@ status-website:
   logoUrl: https://raw.githubusercontent.com/lyuboslav2406/status-xrm/master/logo-milestone.svg
   faviconSvg: https://raw.githubusercontent.com/lyuboslav2406/status-xrm/master/favicon.svg
   name: XProtect Remote Manager | Health Page | DEV Envrironment
-  introTitle: "Welcome to the **XProtect Remote Manager** Health Page"
+  introTitle: "Welcome to the **XRM** Health Page"
 
   introMessage: Get **real-time** updates on system performance, maintenance, and any issues affecting our services. Stay connected with the latest information on your **XRM** software.
   navbar:

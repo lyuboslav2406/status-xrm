@@ -18,6 +18,9 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Install sodium-native
+        run: npm install --global sodium-native@4.0.4
+          
       - name: Get Bearer Token
         id: get_token
         run: |
@@ -69,6 +72,4 @@ jobs:
           curl -L -X PUT \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer ${{ secrets.GH_PAT }}" \
-            -H "X-GitHub-Api-Version: 2022-11-28" \
-            https://api.github.com/repos/lyuboslav2406/status-xrm/actions/secrets/BEARER_TOKEN \
-            -d "{\"encrypted_value\":\"${{ env.ENCRYPTED_VALUE }}\",\"key_id\":\"${{ env.KEY_ID }}\"}"
+            

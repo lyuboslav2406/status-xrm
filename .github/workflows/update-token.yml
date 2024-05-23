@@ -57,9 +57,9 @@ jobs:
         run: |
           echo "Encrypting secret value..."
           PUBLIC_KEY=$(jq -r '.key' public_key.json)
-          KEY_ID=$(jq -r '.key_id' public_key.json)
           ENCRYPTED_VALUE=$(echo -n "${{ secrets.BEARER_TOKEN }}" | openssl pkeyutl -encrypt -pubin -inkey <(echo "$PUBLIC_KEY") | base64 -w 0)
           echo "ENCRYPTED_VALUE=$ENCRYPTED_VALUE" >> $GITHUB_ENV
+
 
 
       - name: Update Repository Secret

@@ -57,10 +57,8 @@ jobs:
         run: |
           echo "Encrypting secret value..."
           PUBLIC_KEY=$(jq -r '.key' public_key.json)
-          ENCRYPTED_VALUE=$(echo -n "${{ secrets.BEARER_TOKEN }}" | openssl pkeyutl -encrypt -pubin -inkey <(echo "$PUBLIC_KEY") | base64 -w 0)
+          ENCRYPTED_VALUE=$(node -e "const sodium = require('sodium-native'); const publicKey = Buffer.from('${PUBLIC_KEY}', 'base64'); const message = Buffer.from('${{ env.BEARER_TOKEN }}'); const ciphertext = Buffer.alloc(sodium.crypto_box_SEALBYTES + message.length); sodium.crypto_box_seal(ciphertext, message, publicKey); console.log(ciphertext.toString('base64'));")
           echo "ENCRYPTED_VALUE=$ENCRYPTED_VALUE" >> $GITHUB_ENV
-
-
 
       - name: Update Repository Secret
         run: |

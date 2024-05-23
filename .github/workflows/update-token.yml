@@ -41,7 +41,7 @@ jobs:
 
       - name: Set GitHub Secret
         run: |
-          echo "$BEARER_TOKEN" | gh secret set Bearer_Token --body -
+          gh secret set BEARER_TOKEN --body "$BEARER_TOKEN"
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
-          BEARER_TOKEN: ${{ env.BEARER_TOKEN }}
+          BEARER_TOKEN: ${{ secrets.BEARER_TOKEN }}

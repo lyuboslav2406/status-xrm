@@ -95,18 +95,16 @@
     "icon": "https://www.milestonesys.com/favicon.ico",
     "slug": "sc-get-sites",
     "status": "up",
-    "uptime": "2.68%",
-    "uptimeDay": "2.68%",
-    "uptimeWeek": "2.68%",
-    "uptimeMonth": "2.68%",
-    "uptimeYear": "2.68%",
+    "uptime": "100.00%",
+    "uptimeDay": "100.00%",
+    "uptimeWeek": "100.00%",
+    "uptimeMonth": "100.00%",
+    "uptimeYear": "100.00%",
     "time": 417,
     "timeDay": 417,
     "timeWeek": 417,
     "timeMonth": 417,
     "timeYear": 417,
-    "dailyMinutesDown": {
-      "2024-05-23": 3
-    }
+    "dailyMinutesDown": {}
   }
 ]

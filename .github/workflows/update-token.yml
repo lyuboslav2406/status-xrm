@@ -58,7 +58,10 @@ jobs:
           KEY_ID=$(jq -r '.key_id' public_key.json)
           echo "PUBLIC_KEY=$PUBLIC_KEY" >> $GITHUB_ENV
           echo "KEY_ID=$KEY_ID" >> $GITHUB_ENV
-
+          
+      - name: Install libsodium-wrappers
+        run: npm install libsodium-wrappers
+      
       - name: Encrypt Secret Value
         id: encrypt_secret
         run: |

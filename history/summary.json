@@ -77,18 +77,16 @@
     "icon": "https://www.milestonesys.com/favicon.ico",
     "slug": "sas-login-unauthorized",
     "status": "up",
-    "uptime": "1.65%",
-    "uptimeDay": "1.65%",
-    "uptimeWeek": "1.65%",
-    "uptimeMonth": "1.65%",
-    "uptimeYear": "1.65%",
+    "uptime": "100.00%",
+    "uptimeDay": "100.00%",
+    "uptimeWeek": "100.00%",
+    "uptimeMonth": "100.00%",
+    "uptimeYear": "100.00%",
     "time": 626,
     "timeDay": 626,
     "timeWeek": 626,
     "timeMonth": 626,
     "timeYear": 626,
-    "dailyMinutesDown": {
-      "2024-05-23": 3
-    }
+    "dailyMinutesDown": {}
   }
 ]

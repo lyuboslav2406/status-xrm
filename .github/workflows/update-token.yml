@@ -51,7 +51,9 @@ jobs:
 
       - name: Encrypt and Set GitHub Secret
         run: |
-          encrypted_value=$(echo -n ${{ env.BEARER_TOKEN }} | openssl rsautl -encrypt -pubin -inkey <(echo "$PUBLIC_KEY" | base64 -d) | base64)
+          echo "${{ env.PUBLIC_KEY }}" | base64 -d > public_key.pem
+          encrypted_value=$(echo -n "${{ env.BEARER_TOKEN }}" | openssl pkeyutl -encrypt -pubin -inkey public_key.pem | base64)
+          echo "Encrypted Value: $encrypted_value"
           gh api \
             -H "Accept: application/vnd.github.v3+json" \
             -X PUT \

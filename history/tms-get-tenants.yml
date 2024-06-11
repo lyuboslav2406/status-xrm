@@ -1,7 +1,7 @@
 url: https://tms.dev.cmxapp.cloud/tenants/$AMS_TENANT_ID
-status: up
-code: 200
-responseTime: 1400
-lastUpdated: 2024-06-10T23:05:05.343Z
+status: down
+code: 401
+responseTime: 350
+lastUpdated: 2024-06-11T08:38:23.137Z
 startTime: 2024-05-23T10:24:04.052Z
 generator: Upptime <https://github.com/upptime/upptime>

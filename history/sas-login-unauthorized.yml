@@ -1,7 +1,7 @@
 url: https://sas.dev.cmxapp.cloud/auth/awsidentity/
-status: up
-code: 401
-responseTime: 569
-lastUpdated: 2024-07-21T23:05:45.165Z
+status: down
+code: 504
+responseTime: 29343
+lastUpdated: 2024-07-22T10:35:17.586Z
 startTime: 2024-05-23T10:32:48.681Z
 generator: Upptime <https://github.com/upptime/upptime>

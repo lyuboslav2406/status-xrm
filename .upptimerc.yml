@@ -36,7 +36,7 @@ sites:
     - "Authorization: Bearer $BEARER_TOKEN"
     - "Site-Id: 5d25048e-3462-4eb5-b700-50052693f8fc"
     expectedStatusCodes:
-      - 401
+      - 403
 
 status-website:
   # Add your custom domain name, or remove the `cname` line if you don't have a domain

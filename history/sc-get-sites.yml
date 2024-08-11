@@ -1,7 +1,7 @@
 url: https://sc.dev.cmxapp.cloud/vms/rest/v1/sites
-status: up
-code: 403
-responseTime: 713
-lastUpdated: 2024-08-10T23:06:50.698Z
+status: down
+code: 401
+responseTime: 321
+lastUpdated: 2024-08-11T02:02:46.849Z
 startTime: 2024-05-23T12:17:09.397Z
 generator: Upptime <https://github.com/upptime/upptime>

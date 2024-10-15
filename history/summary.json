@@ -4,14 +4,14 @@
     "url": "https://web.dev.cmxapp.cloud/",
     "icon": "https://icons.duckduckgo.com/ip3/web.dev.cmxapp.cloud.ico",
     "slug": "xrm-homepage",
-    "status": "up",
-    "uptime": "97.35%",
-    "uptimeDay": "32.36%",
-    "uptimeWeek": "44.98%",
-    "uptimeMonth": "87.34%",
-    "uptimeYear": "97.35%",
+    "status": "down",
+    "uptime": "97.36%",
+    "uptimeDay": "32.60%",
+    "uptimeWeek": "45.22%",
+    "uptimeMonth": "87.39%",
+    "uptimeYear": "97.36%",
     "time": 389,
-    "timeDay": 370,
+    "timeDay": 375,
     "timeWeek": 365,
     "timeMonth": 378,
     "timeYear": 389,
@@ -21,7 +21,7 @@
       "2024-10-13": 994,
       "2024-10-12": 939,
       "2024-10-11": 963,
-      "2024-10-10": 746
+      "2024-10-10": 722
     }
   },
   {

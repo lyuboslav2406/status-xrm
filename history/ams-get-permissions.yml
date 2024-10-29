@@ -1,7 +1,7 @@
 url: https://ams.dev.cmxapp.cloud/permissions?grantorTenantId=$AMS_TENANT_ID
-status: down
-code: 401
-responseTime: 418
-lastUpdated: 2024-10-29T02:11:59.800Z
+status: up
+code: 200
+responseTime: 414
+lastUpdated: 2024-10-29T02:58:59.222Z
 startTime: 2024-05-23T10:07:26.571Z
 generator: Upptime <https://github.com/upptime/upptime>

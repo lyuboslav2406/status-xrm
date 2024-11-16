@@ -1,7 +1,7 @@
 url: https://sms.dev.cmxapp.cloud/sites
-status: up
-code: 200
-responseTime: 396
-lastUpdated: 2024-11-15T23:07:33.007Z
+status: down
+code: 401
+responseTime: 398
+lastUpdated: 2024-11-16T02:10:00.081Z
 startTime: 2024-05-23T10:07:25.852Z
 generator: Upptime <https://github.com/upptime/upptime>
